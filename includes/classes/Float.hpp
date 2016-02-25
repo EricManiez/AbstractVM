@@ -2,20 +2,20 @@
 // Created by Eric MANIEZ on 2/25/16.
 //
 
-#ifndef ABSTRACTVM_INT8_HPP
-#define ABSTRACTVM_INT8_HPP
+#ifndef ABSTRACTVM_FLOAT_HPP
+#define ABSTRACTVM_FLOAT_HPP
 
 #include "../AOperand.hpp"
 
-class Int8 : public AOperand
+class Float : public AOperand
 {
 	public:
-	Int8(int8_t val);
-	Int8(Int8 const &src);
-	Int8 &operator=(Int8 const &rhs);
-	virtual ~Int8(void) {}
+	Float(float val);
+	Float(Float const &src);
+	Float &operator=(Float const &rhs);
+	virtual ~Float(void) {}
 
-	virtual const int8_t &getValue() const;
+	virtual const float &getValue() const;
 	virtual int8_t getInt8Value() const;
 	virtual int16_t getInt16Value() const;
 	virtual int32_t getInt32Value() const;
@@ -23,8 +23,9 @@ class Int8 : public AOperand
 	virtual double getDoubleValue() const;
 
 	private:
-	Int8();
-	int8_t _value;
+	Float();
+	float _value;
 };
 
-#endif //ABSTRACTVM_INT8_HPP
+
+#endif //ABSTRACTVM_FLOAT_HPP

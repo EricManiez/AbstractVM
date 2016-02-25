@@ -26,6 +26,12 @@ class AOperand : public IOperand
 	virtual IOperand const *operator%(IOperand const &rhs) const;
 	virtual std::string const &toString(void) const;
 
+	virtual int8_t getInt8Value() const = 0;
+	virtual int16_t getInt16Value() const = 0;
+	virtual int32_t getInt32Value() const = 0;
+	virtual float getFloatValue() const = 0;
+	virtual double getDoubleValue() const = 0;
+
 	protected:
 	AOperand(eOperandType, std::string);
 	eOperandType const _type;

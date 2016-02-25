@@ -15,7 +15,12 @@ class Double : public AOperand
 	Double &operator=(Double const &rhs);
 	virtual ~Double(void) {}
 
-	const double &getValue() const;
+	virtual const double &getValue() const;
+	virtual int8_t getInt8Value() const;
+	virtual int16_t getInt16Value() const;
+	virtual int32_t getInt32Value() const;
+	virtual float getFloatValue() const;
+	virtual double getDoubleValue() const;
 
 	private:
 	Double();
