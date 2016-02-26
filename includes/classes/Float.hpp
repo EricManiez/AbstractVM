@@ -10,7 +10,8 @@
 class Float : public AOperand
 {
 	public:
-	Float(float val);
+	Float(long double val);
+	Float(std::string val);
 	Float(Float const &src);
 	Float &operator=(Float const &rhs);
 	virtual ~Float(void) {}

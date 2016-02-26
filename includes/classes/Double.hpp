@@ -10,7 +10,8 @@
 class Double : public AOperand
 {
 	public:
-	Double(double val);
+	Double(long double val);
+	Double(std::string val);
 	Double(Double const &src);
 	Double &operator=(Double const &rhs);
 	virtual ~Double(void) {}

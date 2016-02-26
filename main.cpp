@@ -3,6 +3,7 @@
 //
 
 #include <iostream>
+#include <float.h>
 #include "includes/classes/Int8.hpp"
 #include "includes/classes/Int16.hpp"
 #include "includes/classes/Int32.hpp"
@@ -13,11 +14,12 @@ int main()
 {
 	class Int8 one(127);
 	class Int8 two(2);
-	class Int16 three(12);
-	class Float four(4);
-	class Double five(5);
+	class Int16 three(127);
+	class Float four(FLT_MAX);
+	class Double five(FLT_MAX);
 
-	std::cout << (one+five)->toString() << std::endl;
+	std::cout << "teste" << std::endl;
+	std::cout << (one*three)->toString() << std::endl;
 
 	return 1;
 }

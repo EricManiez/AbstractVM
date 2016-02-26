@@ -4,11 +4,20 @@
 
 #include "../../includes/classes/Double.hpp"
 
-Double::Double() : AOperand(eOperandType::Double, std::to_string(0)), _value(0) {}
+Double::Double() : AOperand("", eOperandType::Double, std::to_string(0)), _value(0) {}
 
-Double::Double(double val) : AOperand(eOperandType::Double, std::to_string(val)), _value(val) {}
+Double::Double(long double val) : AOperand(
+		std::to_string(static_cast<double>(val)), eOperandType::Double, std::to_string(static_cast<double>(val))) {
+	//Check if value in range
+	_value = std::stod(_toString);
+}
 
-Double::Double(Double const &src) : AOperand(eOperandType::Double, std::to_string(src.getValue())), _value(src.getValue()) {
+Double::Double(std::string val) : AOperand(val, eOperandType::Double, val) {
+	//Attempt conversion from string to double
+	_value = std::stod(val);
+}
+
+Double::Double(Double const &src) : AOperand(src.toString(), eOperandType::Double, src.toString()), _value(src.getValue()) {
 	*this = src;
 }
 

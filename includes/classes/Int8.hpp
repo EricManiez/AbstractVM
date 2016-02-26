@@ -10,7 +10,8 @@
 class Int8 : public AOperand
 {
 	public:
-	Int8(int8_t val);
+	Int8(long double val);
+	Int8(std::string val);
 	Int8(Int8 const &src);
 	Int8 &operator=(Int8 const &rhs);
 	virtual ~Int8(void) {}

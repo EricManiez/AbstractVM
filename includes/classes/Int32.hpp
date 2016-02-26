@@ -10,7 +10,8 @@
 class Int32 : public AOperand
 {
 	public:
-	Int32(int32_t val);
+	Int32(long double val);
+	Int32(std::string val);
 	Int32(Int32 const &src);
 	Int32 &operator=(Int32 const &rhs);
 	virtual ~Int32(void) {}
