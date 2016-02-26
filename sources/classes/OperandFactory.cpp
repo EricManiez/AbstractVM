@@ -10,11 +10,51 @@
 #include "../../includes/classes/operands/Double.hpp"
 
 IOperand const *OperandFactory::createOperand(eOperandType type, std::string const &value) const {
-	return (*this.*_stringFunctions[type])(value);
+	IOperand const *ret = 0;
+	std::string names[5] = {
+			"Int8",
+			"Int16",
+			"Int32",
+			"Float",
+			"Double"
+	};
+
+	try {
+		ret = (*this.*_stringFunctions[type])(value);
+		//ret = CALL_MEMBER_FN(*this, _stringFunctions[type])(value);
+	} catch (Operand::OutOfRangeException &e) {
+		std::cout << e.what() << " : submitted value is out of " << names[type] << " range." << std::endl;
+		exit(0);
+	} catch (std::exception &e) {
+		std::cout << e.what() << std::endl;
+		exit(0);
+	}
+
+	return ret;
 }
 
 IOperand const *OperandFactory::createOperand(eOperandType type, long double const &value) const {
-	return (*this.*_numberFunctions[type])(value);
+	IOperand const *ret = 0;
+	std::string names[5] = {
+			"Int8",
+			"Int16",
+			"Int32",
+			"Float",
+			"Double"
+	};
+
+	try {
+		ret = (*this.*_numberFunctions[type])(value);
+		//ret = CALL_MEMBER_FN(*this, _numberFunctions[type])(value);
+	} catch (Operand::OutOfRangeException &e) {
+		std::cout << e.what() << " : calculated value is out of " << names[type] << " range." << std::endl;
+		exit(0);
+	} catch (std::exception &e) {
+		std::cout << e.what() << std::endl;
+		exit(0);
+	}
+
+	return ret;
 }
 
 IOperand const *OperandFactory::createInt8(std::string const &value) const {
@@ -37,23 +77,23 @@ IOperand const *OperandFactory::createDouble(std::string const &value) const {
 	return new class Double(value);
 }
 
-IOperand const *OperandFactory::createInt8(long double const & value) const {
+IOperand const *OperandFactory::createInt8(long double const &value) const {
 	return new class Int8(value);
 }
 
-IOperand const *OperandFactory::createInt16(long double const & value) const {
+IOperand const *OperandFactory::createInt16(long double const &value) const {
 	return new class Int16(value);
 }
 
-IOperand const *OperandFactory::createInt32(long double const & value) const {
+IOperand const *OperandFactory::createInt32(long double const &value) const {
 	return new class Int32(value);
 }
 
-IOperand const *OperandFactory::createFloat(long double const & value) const {
+IOperand const *OperandFactory::createFloat(long double const &value) const {
 	return new class Float(value);
 }
 
-IOperand const *OperandFactory::createDouble(long double const & value) const {
+IOperand const *OperandFactory::createDouble(long double const &value) const {
 	return new class Double(value);
 }
 

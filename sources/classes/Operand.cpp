@@ -41,47 +41,47 @@ eOperandType Operand::getType(void) const {
 
 IOperand const *Operand::operator+(IOperand const &rhs) const {
 	std::cout << "+ operator" << std::endl;
+
 	OperandFactory factory;
 	long double op = this->getDoubleValue() + static_cast<class Double const *>(std::addressof(rhs))->getDoubleValue();
 
 	return factory.createOperand(choosePrecision(rhs), op);
-//	return CALL_MEMBER_FN(*this, _functions[3])(op);
 }
 
 IOperand const *Operand::operator-(IOperand const &rhs) const {
 	std::cout << "- operator" << std::endl;
+
 	OperandFactory factory;
 	long double op = this->getDoubleValue() - static_cast<class Double const *>(std::addressof(rhs))->getDoubleValue();
 
 	return factory.createOperand(choosePrecision(rhs), op);
-//	return CALL_MEMBER_FN(*this, _functions[3])(op);
 }
 
 IOperand const *Operand::operator*(IOperand const &rhs) const {
 	std::cout << "* operator" << std::endl;
+
 	OperandFactory factory;
 	long double op = this->getDoubleValue() * static_cast<class Double const *>(std::addressof(rhs))->getDoubleValue();
 
 	return factory.createOperand(choosePrecision(rhs), op);
-//	return CALL_MEMBER_FN(*this, _functions[3])(op);
 }
 
 IOperand const *Operand::operator/(IOperand const &rhs) const {
 	std::cout << "/ operator" << std::endl;
+
 	OperandFactory factory;
 	long double op = this->getDoubleValue() / static_cast<class Double const *>(std::addressof(rhs))->getDoubleValue();
 
 	return factory.createOperand(choosePrecision(rhs), op);
-//	return CALL_MEMBER_FN(*this, _functions[3])(op);
 }
 
 IOperand const *Operand::operator%(IOperand const &rhs) const {
 	std::cout << "% operator" << std::endl;
+
 	OperandFactory factory;
 	long double op = this->getInt32Value() % static_cast<class Int32 const *>(std::addressof(rhs))->getInt32Value();
 
 	return factory.createOperand(choosePrecision(rhs), op);
-//	return CALL_MEMBER_FN(*this, _functions[3])(op);
 }
 
 std::string const &Operand::toString(void) const {
@@ -89,7 +89,7 @@ std::string const &Operand::toString(void) const {
 }
 
 const char *Operand::OutOfRangeException::what() const throw() {
-	return "Submitted value is out of expected range!";
+	return "Range exception";
 }
 
 //int8_t AOperand::getInt8Value() const {
