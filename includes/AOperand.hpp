@@ -21,7 +21,7 @@ class AOperand : public IOperand
 
 	eOperandType choosePrecision(IOperand const &rhs) const;
 
-	std::string getValue();
+	virtual std::string getStrValue() const;
 	virtual int getPrecision(void) const;
 	virtual eOperandType getType(void) const;
 
@@ -66,10 +66,9 @@ class AOperand : public IOperand
 	virtual double getDoubleValue() const;
 
 	protected:
-	AOperand(std::string, eOperandType, std::string);
-	std::string _value;
+	AOperand(std::string, eOperandType);
+	std::string _strValue;
 	eOperandType const _type;
-	std::string _toString;
 
 	private:
 	AOperand();

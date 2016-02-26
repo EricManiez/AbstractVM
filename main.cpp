@@ -10,8 +10,7 @@
 #include "includes/classes/Float.hpp"
 #include "includes/classes/Double.hpp"
 
-int main()
-{
+int main() {
 	class Int8 one(127);
 	class Int8 two(2);
 	class Int16 three(127);
@@ -19,7 +18,7 @@ int main()
 	class Double five(FLT_MAX);
 
 	std::cout << "teste" << std::endl;
-	std::cout << (one*three)->toString() << std::endl;
+	std::cout << (one * three)->toString() << std::endl;
 
 	return 1;
 }

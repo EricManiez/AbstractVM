@@ -14,9 +14,10 @@ class Double : public AOperand
 	Double(std::string val);
 	Double(Double const &src);
 	Double &operator=(Double const &rhs);
+
 	virtual ~Double(void) {}
 
-	virtual const double &getValue() const;
+	const double &getValue() const;
 
 	private:
 	Double();

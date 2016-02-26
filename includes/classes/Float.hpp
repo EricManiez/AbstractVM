@@ -14,6 +14,7 @@ class Float : public AOperand
 	Float(std::string val);
 	Float(Float const &src);
 	Float &operator=(Float const &rhs);
+
 	virtual ~Float(void) {}
 
 	virtual const float &getValue() const;

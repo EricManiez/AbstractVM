@@ -14,6 +14,7 @@ class Int8 : public AOperand
 	Int8(std::string val);
 	Int8(Int8 const &src);
 	Int8 &operator=(Int8 const &rhs);
+
 	virtual ~Int8(void) {}
 
 	virtual const int8_t &getValue() const;

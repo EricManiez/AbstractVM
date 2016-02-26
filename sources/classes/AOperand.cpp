@@ -10,14 +10,14 @@
 #include "../../includes/classes/Float.hpp"
 #include "../../includes/classes/Double.hpp"
 
-AOperand::AOperand() : _value(""), _type(eOperandType::Int8), _toString("") {}
+AOperand::AOperand() : _strValue(""), _type(eOperandType::Int8) {}
 
-AOperand::AOperand(std::string val, eOperandType type, std::string str) : _value(val), _type(type), _toString(str) {}
+AOperand::AOperand(std::string val, eOperandType type) : _strValue(val), _type(type) {}
 
-AOperand::AOperand(AOperand const &src) : _type(src.getType()), _toString(src.toString()) {}
+AOperand::AOperand(AOperand const &src) : _type(src.getType()) {}
 
 AOperand &AOperand::operator=(AOperand const &rhs) {
-	this->_toString = rhs.toString();
+	this->_strValue = rhs.getStrValue();
 
 	return *this;
 }
@@ -26,8 +26,8 @@ eOperandType AOperand::choosePrecision(IOperand const &rhs) const {
 	return rhs.getPrecision() >= this->getPrecision() ? rhs.getType() : this->getType();
 }
 
-std::string AOperand::getValue() {
-	return this->_value;
+std::string AOperand::getStrValue() const {
+	return this->_strValue;
 }
 
 int AOperand::getPrecision(void) const {
@@ -39,28 +39,23 @@ eOperandType AOperand::getType(void) const {
 }
 
 IOperand const *AOperand::createInt8(long double d) const {
-	IOperand const *ret = new class Int8(d);
-	return ret;
+	return new class Int8(d);
 }
 
 IOperand const *AOperand::createInt16(long double d) const {
-	IOperand const *ret = new class Int16(d);
-	return ret;
+	return new class Int16(d);
 }
 
 IOperand const *AOperand::createInt32(long double d) const {
-	IOperand const *ret = new class Int32(d);
-	return ret;
+	return new class Int32(d);
 }
 
 IOperand const *AOperand::createFloat(long double d) const {
-	IOperand const *ret = new class Float(d);
-	return ret;
+	return new class Float(d);
 }
 
 IOperand const *AOperand::createDouble(long double d) const {
-	IOperand const *ret = new class Double(d);
-	return ret;
+	return new class Double(d);
 }
 
 IOperand const *AOperand::operator+(IOperand const &rhs) const {
@@ -104,7 +99,7 @@ IOperand const *AOperand::operator%(IOperand const &rhs) const {
 }
 
 std::string const &AOperand::toString(void) const {
-	return _toString;
+	return _strValue;
 }
 
 const char *AOperand::OutOfRangeException::what() const throw() {
@@ -112,23 +107,23 @@ const char *AOperand::OutOfRangeException::what() const throw() {
 }
 
 int8_t AOperand::getInt8Value() const {
-	return std::stoi(this->_value);
+	return std::stoi(this->_strValue);
 }
 
 int16_t AOperand::getInt16Value() const {
-	return std::stoi(this->_value);
+	return std::stoi(this->_strValue);
 }
 
 int32_t AOperand::getInt32Value() const {
-	return std::stoi(this->_value);
+	return std::stoi(this->_strValue);
 }
 
 float AOperand::getFloatValue() const {
-	return std::stof(this->_value);
+	return std::stof(this->_strValue);
 }
 
 double AOperand::getDoubleValue() const {
-	return std::stod(this->_value);
+	return std::stod(this->_strValue);
 }
 
 std::ostream &operator<<(std::ostream &o, class Int8 const &i) {
