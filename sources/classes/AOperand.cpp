@@ -106,21 +106,21 @@ const char *AOperand::OutOfRangeException::what() const throw() {
 	return "Submitted value is out of expected range!";
 }
 
-int8_t AOperand::getInt8Value() const {
-	return std::stoi(this->_strValue);
-}
+//int8_t AOperand::getInt8Value() const {
+//	return std::stoi(this->_strValue);
+//}
 
-int16_t AOperand::getInt16Value() const {
-	return std::stoi(this->_strValue);
-}
+//int16_t AOperand::getInt16Value() const {
+//	return std::stoi(this->_strValue);
+//}
 
 int32_t AOperand::getInt32Value() const {
 	return std::stoi(this->_strValue);
 }
 
-float AOperand::getFloatValue() const {
-	return std::stof(this->_strValue);
-}
+//float AOperand::getFloatValue() const {
+//	return std::stof(this->_strValue);
+//}
 
 double AOperand::getDoubleValue() const {
 	return std::stod(this->_strValue);

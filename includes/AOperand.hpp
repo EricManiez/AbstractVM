@@ -19,32 +19,16 @@ class AOperand : public IOperand
 
 	virtual ~AOperand(void) {}
 
-	eOperandType choosePrecision(IOperand const &rhs) const;
-
 	virtual std::string getStrValue() const;
 	virtual int getPrecision(void) const;
 	virtual eOperandType getType(void) const;
-
-	virtual IOperand const *createInt8(long double) const;
-	virtual IOperand const *createInt16(long double) const;
-	virtual IOperand const *createInt32(long double) const;
-	virtual IOperand const *createFloat(long double) const;
-	virtual IOperand const *createDouble(long double) const;
-
-	ClassCreationFunctionPointer _functions[5] = {
-			&AOperand::createInt8,
-			&AOperand::createInt16,
-			&AOperand::createInt32,
-			&AOperand::createFloat,
-			&AOperand::createDouble
-	};
+	virtual std::string const &toString(void) const;
 
 	virtual IOperand const *operator+(IOperand const &rhs) const;
 	virtual IOperand const *operator-(IOperand const &rhs) const;
 	virtual IOperand const *operator*(IOperand const &rhs) const;
 	virtual IOperand const *operator/(IOperand const &rhs) const;
 	virtual IOperand const *operator%(IOperand const &rhs) const;
-	virtual std::string const &toString(void) const;
 
 	class OutOfRangeException : public std::exception
 	{
@@ -59,16 +43,32 @@ class AOperand : public IOperand
 		virtual const char *what() const throw();
 	};
 
-	virtual int8_t getInt8Value() const;
-	virtual int16_t getInt16Value() const;
-	virtual int32_t getInt32Value() const;
-	virtual float getFloatValue() const;
-	virtual double getDoubleValue() const;
-
 	protected:
 	AOperand(std::string, eOperandType);
+	eOperandType choosePrecision(IOperand const &rhs) const;
+
+	virtual IOperand const *createInt8(long double) const;
+	virtual IOperand const *createInt16(long double) const;
+	virtual IOperand const *createInt32(long double) const;
+	virtual IOperand const *createFloat(long double) const;
+	virtual IOperand const *createDouble(long double) const;
+
+//	virtual int8_t getInt8Value() const;
+//	virtual int16_t getInt16Value() const;
+	virtual int32_t getInt32Value() const;
+//	virtual float getFloatValue() const;
+	virtual double getDoubleValue() const;
+
 	std::string _strValue;
 	eOperandType const _type;
+
+	ClassCreationFunctionPointer _functions[5] = {
+			&AOperand::createInt8,
+			&AOperand::createInt16,
+			&AOperand::createInt32,
+			&AOperand::createFloat,
+			&AOperand::createDouble
+	};
 
 	private:
 	AOperand();
