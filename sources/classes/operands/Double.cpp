@@ -20,6 +20,7 @@ Double::Double(long double val) : Operand(std::to_string(static_cast<double>(val
 Double::Double(std::string val) : Operand(val, eOperandType::Double) {
 	//Attempt conversion from string to double
 	_value = std::stod(val);
+	std::cout << "double string construction : " << _value << std::endl;
 }
 
 Double::Double(Double const &src) : Operand(src.toString(), eOperandType::Double), _value(src.getValue()) {

@@ -9,6 +9,7 @@
 #include "../../includes/classes/operands/Int32.hpp"
 #include "../../includes/classes/operands/Float.hpp"
 #include "../../includes/classes/operands/Double.hpp"
+#include "../../includes/classes/OperandFactory.hpp"
 
 Operand::Operand() : _strValue(""), _type(eOperandType::Int8) {}
 
@@ -38,63 +39,48 @@ eOperandType Operand::getType(void) const {
 	return this->_type;
 }
 
-IOperand const *Operand::createInt8(long double d) const {
-	return new class Int8(d);
-}
-
-IOperand const *Operand::createInt16(long double d) const {
-	return new class Int16(d);
-}
-
-IOperand const *Operand::createInt32(long double d) const {
-	return new class Int32(d);
-}
-
-IOperand const *Operand::createFloat(long double d) const {
-	return new class Float(d);
-}
-
-IOperand const *Operand::createDouble(long double d) const {
-	return new class Double(d);
-}
-
 IOperand const *Operand::operator+(IOperand const &rhs) const {
 	std::cout << "+ operator" << std::endl;
+	OperandFactory factory;
 	long double op = this->getDoubleValue() + static_cast<class Double const *>(std::addressof(rhs))->getDoubleValue();
 
-	return (this->*_functions[this->choosePrecision(rhs)])(op);
+	return factory.createOperand(choosePrecision(rhs), op);
 //	return CALL_MEMBER_FN(*this, _functions[3])(op);
 }
 
 IOperand const *Operand::operator-(IOperand const &rhs) const {
 	std::cout << "- operator" << std::endl;
+	OperandFactory factory;
 	long double op = this->getDoubleValue() - static_cast<class Double const *>(std::addressof(rhs))->getDoubleValue();
 
-	return (this->*_functions[this->choosePrecision(rhs)])(op);
+	return factory.createOperand(choosePrecision(rhs), op);
 //	return CALL_MEMBER_FN(*this, _functions[3])(op);
 }
 
 IOperand const *Operand::operator*(IOperand const &rhs) const {
 	std::cout << "* operator" << std::endl;
+	OperandFactory factory;
 	long double op = this->getDoubleValue() * static_cast<class Double const *>(std::addressof(rhs))->getDoubleValue();
 
-	return (this->*_functions[this->choosePrecision(rhs)])(op);
+	return factory.createOperand(choosePrecision(rhs), op);
 //	return CALL_MEMBER_FN(*this, _functions[3])(op);
 }
 
 IOperand const *Operand::operator/(IOperand const &rhs) const {
 	std::cout << "/ operator" << std::endl;
+	OperandFactory factory;
 	long double op = this->getDoubleValue() / static_cast<class Double const *>(std::addressof(rhs))->getDoubleValue();
 
-	return (this->*_functions[this->choosePrecision(rhs)])(op);
+	return factory.createOperand(choosePrecision(rhs), op);
 //	return CALL_MEMBER_FN(*this, _functions[3])(op);
 }
 
 IOperand const *Operand::operator%(IOperand const &rhs) const {
 	std::cout << "% operator" << std::endl;
+	OperandFactory factory;
 	long double op = this->getInt32Value() % static_cast<class Int32 const *>(std::addressof(rhs))->getInt32Value();
 
-	return (this->*_functions[this->choosePrecision(rhs)])(op);
+	return factory.createOperand(choosePrecision(rhs), op);
 //	return CALL_MEMBER_FN(*this, _functions[3])(op);
 }
 

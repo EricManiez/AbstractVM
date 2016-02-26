@@ -20,6 +20,7 @@ Float::Float(long double val) : Operand(std::to_string(static_cast<float>(val)),
 Float::Float(std::string val) : Operand(val, eOperandType::Float) {
 	//Attempt conversion from string to float
 	_value = std::stof(val);
+	std::cout << "float string construction : " << _value << std::endl;
 }
 
 Float::Float(Float const &src) : Operand(src.toString(), eOperandType::Float), _value(src.getValue()) {

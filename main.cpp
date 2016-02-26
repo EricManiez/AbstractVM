@@ -4,22 +4,19 @@
 
 #include <iostream>
 #include <float.h>
-#include "includes/classes/operands/Int8.hpp"
-#include "includes/classes/operands/Int16.hpp"
-#include "includes/classes/operands/Int32.hpp"
-#include "includes/classes/operands/Float.hpp"
-#include "includes/classes/operands/Double.hpp"
+#include "includes/classes/OperandFactory.hpp"
 
 int main() {
-	class Int8 one(070);
-	class Int8 two(2);
-	class Int16 three(0x0f);
-	class Int32 threeandahalf(0xff);
-	class Float four(42.42);
-	class Double five(432.432);
 
-	std::cout << "teste" << std::endl;
-	std::cout << (one % four)->toString() << std::endl;
+	OperandFactory factory;
+	IOperand const *one = factory.createOperand(eOperandType::Int8, "50");
+//	IOperand const *two = factory.createOperand(eOperandType::Int8, "2");
+//	IOperand const *three = factory.createOperand(eOperandType::Int16, "0x0f");
+//	IOperand const *four = factory.createOperand(eOperandType::Int32, "0xff");
+//	IOperand const *five = factory.createOperand(eOperandType::Float, "42.42");
+//	IOperand const *six = factory.createOperand(eOperandType::Double, "432.432");
+
+	std::cout << (*one + *one)->toString() << std::endl;
 
 	return 1;
 }

@@ -19,6 +19,7 @@ Int16::Int16(long double val) : Operand(std::to_string(static_cast<int16_t>(val)
 Int16::Int16(std::string val) : Operand(val, eOperandType::Int16) {
 	//Attempt conversion from string to int16_t
 	int convertedVal = std::stoi(val, 0, 0);
+	std::cout << "int16 string construction : " << convertedVal << std::endl;
 
 	//Check if value is in int8_t range
 	if (INT16_MIN <= convertedVal && convertedVal <= INT16_MAX) {

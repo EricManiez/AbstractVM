@@ -19,6 +19,7 @@ Int32::Int32(long double val) : Operand(std::to_string(static_cast<int32_t>(val)
 Int32::Int32(std::string val) : Operand(val, eOperandType::Int32) {
 	//Attempt conversion from string to int32_t
 	_value = std::stoi(val, 0, 0);
+	std::cout << "int32 string construction : " << _value << std::endl;
 }
 
 Int32::Int32(Int32 const &src) : Operand(src.toString(), eOperandType::Int32), _value(src.getValue()) {

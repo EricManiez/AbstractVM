@@ -17,7 +17,7 @@ class Operand : public IOperand
 	Operand(Operand const &src);
 	Operand &operator=(Operand const &rhs);
 
-	virtual ~Operand(void) {}
+	virtual ~Operand(void) {};
 
 	virtual std::string getStrValue() const;
 	virtual int getPrecision(void) const;
@@ -47,12 +47,6 @@ class Operand : public IOperand
 	Operand(std::string, eOperandType);
 	eOperandType choosePrecision(IOperand const &rhs) const;
 
-	virtual IOperand const *createInt8(long double) const;
-	virtual IOperand const *createInt16(long double) const;
-	virtual IOperand const *createInt32(long double) const;
-	virtual IOperand const *createFloat(long double) const;
-	virtual IOperand const *createDouble(long double) const;
-
 //	virtual int8_t getInt8Value() const;
 //	virtual int16_t getInt16Value() const;
 	virtual int32_t getInt32Value() const;
@@ -61,14 +55,6 @@ class Operand : public IOperand
 
 	std::string _strValue;
 	eOperandType const _type;
-
-	ClassCreationFunctionPointer _functions[5] = {
-			&Operand::createInt8,
-			&Operand::createInt16,
-			&Operand::createInt32,
-			&Operand::createFloat,
-			&Operand::createDouble
-	};
 
 	private:
 	Operand();
