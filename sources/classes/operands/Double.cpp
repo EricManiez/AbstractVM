@@ -3,7 +3,7 @@
 //
 
 #include <float.h>
-#include "../../includes/classes/Double.hpp"
+#include "../../../includes/classes/operands/Double.hpp"
 
 Double::Double() : Operand("", eOperandType::Double), _value(0) {}
 

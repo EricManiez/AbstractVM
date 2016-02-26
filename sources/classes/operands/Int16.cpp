@@ -2,7 +2,7 @@
 // Created by Eric MANIEZ on 2/25/16.
 //
 
-#include "../../includes/classes/Int16.hpp"
+#include "../../../includes/classes/operands/Int16.hpp"
 
 Int16::Int16() : Operand("", eOperandType::Int16), _value(0) {}
 
@@ -21,8 +21,8 @@ Int16::Int16(std::string val) : Operand(val, eOperandType::Int16) {
 	int convertedVal = std::stoi(val, 0, 0);
 
 	//Check if value is in int8_t range
-	if (convertedVal >= -32768 && convertedVal <= 32767) {
-		_value = convertedVal;
+	if (INT16_MIN <= convertedVal && convertedVal <= INT16_MAX) {
+		_value = static_cast<int16_t>(convertedVal);
 	} else {
 		throw OutOfRangeException();
 	}

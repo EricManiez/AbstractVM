@@ -6,6 +6,6 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 ${42_PROJECT_FLAGS}")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "./")
 
 set(SOURCE_FILES
-    CMakeLists.txt main.cpp includes/IOperand.hpp includes/AbstractVM.hpp sources/classes/Int8.cpp includes/classes/Int8.hpp sources/classes/Double.cpp includes/classes/Double.hpp sources/classes/Operand.cpp includes/Operand.hpp sources/classes/Int16.cpp includes/classes/Int16.hpp sources/classes/Int32.cpp includes/classes/Int32.hpp sources/classes/Float.cpp includes/classes/Float.hpp)
+    CMakeLists.txt includes/AbstractVM.hpp includes/IOperand.hpp includes/classes/Operand.hpp includes/classes/operands/Double.hpp includes/classes/operands/Float.hpp includes/classes/operands/Int16.hpp includes/classes/operands/Int32.hpp includes/classes/operands/Int8.hpp main.cpp sources/classes/Operand.cpp sources/classes/operands/Double.cpp sources/classes/operands/Float.cpp sources/classes/operands/Int16.cpp sources/classes/operands/Int32.cpp sources/classes/operands/Int8.cpp )
 
 add_executable(AbstractVM ${SOURCE_FILES})

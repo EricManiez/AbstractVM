@@ -6,7 +6,7 @@
 #define ABSTRACTVM_AOPERAND_HPP
 
 
-#include "IOperand.hpp"
+#include "../IOperand.hpp"
 
 
 class Operand : public IOperand

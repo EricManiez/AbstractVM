@@ -3,12 +3,12 @@
 //
 
 #include <array>
-#include "../../includes/Operand.hpp"
-#include "../../includes/classes/Int8.hpp"
-#include "../../includes/classes/Int16.hpp"
-#include "../../includes/classes/Int32.hpp"
-#include "../../includes/classes/Float.hpp"
-#include "../../includes/classes/Double.hpp"
+#include "../../includes/classes/Operand.hpp"
+#include "../../includes/classes/operands/Int8.hpp"
+#include "../../includes/classes/operands/Int16.hpp"
+#include "../../includes/classes/operands/Int32.hpp"
+#include "../../includes/classes/operands/Float.hpp"
+#include "../../includes/classes/operands/Double.hpp"
 
 Operand::Operand() : _strValue(""), _type(eOperandType::Int8) {}
 

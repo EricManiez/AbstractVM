@@ -2,7 +2,7 @@
 // Created by Eric MANIEZ on 2/25/16.
 //
 
-#include "../../includes/classes/Int32.hpp"
+#include "../../../includes/classes/operands/Int32.hpp"
 
 Int32::Int32() : Operand("", eOperandType::Int32), _value(0) {}
 

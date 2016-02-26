@@ -2,7 +2,7 @@
 // Created by Eric MANIEZ on 2/25/16.
 //
 
-#include "../../includes/classes/Int8.hpp"
+#include "../../../includes/classes/operands/Int8.hpp"
 
 Int8::Int8() : Operand("", eOperandType::Int8), _value(0) {}
 
@@ -21,8 +21,8 @@ Int8::Int8(std::string val) : Operand(val, eOperandType::Int8) {
 	int convertedVal = std::stoi(val, 0, 0);
 
 	//Check if value is in int8_t range
-	if (convertedVal >= -128 && convertedVal <= 127) {
-		_value = convertedVal;
+	if (INT8_MIN <= convertedVal && convertedVal <= INT8_MAX) {
+		_value = static_cast<int8_t>(convertedVal);
 	} else {
 		throw OutOfRangeException();
 	}
