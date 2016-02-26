@@ -5,9 +5,9 @@
 #ifndef ABSTRACTVM_INT8_HPP
 #define ABSTRACTVM_INT8_HPP
 
-#include "../AOperand.hpp"
+#include "../Operand.hpp"
 
-class Int8 : public AOperand
+class Int8 : public Operand
 {
 	public:
 	Int8(long double val);

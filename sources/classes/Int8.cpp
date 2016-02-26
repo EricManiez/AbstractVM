@@ -4,9 +4,9 @@
 
 #include "../../includes/classes/Int8.hpp"
 
-Int8::Int8() : AOperand("", eOperandType::Int8), _value(0) {}
+Int8::Int8() : Operand("", eOperandType::Int8), _value(0) {}
 
-Int8::Int8(long double val) : AOperand(std::to_string(static_cast<int8_t>(val)), eOperandType::Int8) {
+Int8::Int8(long double val) : Operand(std::to_string(static_cast<int8_t>(val)), eOperandType::Int8) {
 	std::cout << "int8 num construction : " << val << std::endl;
 	//Check if value is in int16_t range
 	if (INT8_MIN <= val && val <= INT8_MAX) {
@@ -16,7 +16,7 @@ Int8::Int8(long double val) : AOperand(std::to_string(static_cast<int8_t>(val)),
 	}
 }
 
-Int8::Int8(std::string val) : AOperand(val, eOperandType::Int8) {
+Int8::Int8(std::string val) : Operand(val, eOperandType::Int8) {
 	//Attempt conversion from string to int8_t
 	int convertedVal = std::stoi(val, 0, 0);
 
@@ -28,7 +28,7 @@ Int8::Int8(std::string val) : AOperand(val, eOperandType::Int8) {
 	}
 }
 
-Int8::Int8(Int8 const &src) : AOperand(src.toString(), eOperandType::Int8), _value(src.getValue()) {
+Int8::Int8(Int8 const &src) : Operand(src.toString(), eOperandType::Int8), _value(src.getValue()) {
 	*this = src;
 }
 

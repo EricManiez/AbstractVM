@@ -5,9 +5,9 @@
 #ifndef ABSTRACTVM_DOUBLE_HPP
 #define ABSTRACTVM_DOUBLE_HPP
 
-#include "../AOperand.hpp"
+#include "../Operand.hpp"
 
-class Double : public AOperand
+class Double : public Operand
 {
 	public:
 	Double(long double val);

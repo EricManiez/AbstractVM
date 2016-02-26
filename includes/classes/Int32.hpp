@@ -5,9 +5,9 @@
 #ifndef ABSTRACTVM_INT32_HPP
 #define ABSTRACTVM_INT32_HPP
 
-#include "../AOperand.hpp"
+#include "../Operand.hpp"
 
-class Int32 : public AOperand
+class Int32 : public Operand
 {
 	public:
 	Int32(long double val);

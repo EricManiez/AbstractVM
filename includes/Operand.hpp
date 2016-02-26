@@ -9,15 +9,15 @@
 #include "IOperand.hpp"
 
 
-class AOperand : public IOperand
+class Operand : public IOperand
 {
-	typedef IOperand const *(AOperand::*ClassCreationFunctionPointer)(long double num) const;
+	typedef IOperand const *(Operand::*ClassCreationFunctionPointer)(long double num) const;
 
 	public:
-	AOperand(AOperand const &src);
-	AOperand &operator=(AOperand const &rhs);
+	Operand(Operand const &src);
+	Operand &operator=(Operand const &rhs);
 
-	virtual ~AOperand(void) {}
+	virtual ~Operand(void) {}
 
 	virtual std::string getStrValue() const;
 	virtual int getPrecision(void) const;
@@ -44,7 +44,7 @@ class AOperand : public IOperand
 	};
 
 	protected:
-	AOperand(std::string, eOperandType);
+	Operand(std::string, eOperandType);
 	eOperandType choosePrecision(IOperand const &rhs) const;
 
 	virtual IOperand const *createInt8(long double) const;
@@ -63,15 +63,15 @@ class AOperand : public IOperand
 	eOperandType const _type;
 
 	ClassCreationFunctionPointer _functions[5] = {
-			&AOperand::createInt8,
-			&AOperand::createInt16,
-			&AOperand::createInt32,
-			&AOperand::createFloat,
-			&AOperand::createDouble
+			&Operand::createInt8,
+			&Operand::createInt16,
+			&Operand::createInt32,
+			&Operand::createFloat,
+			&Operand::createDouble
 	};
 
 	private:
-	AOperand();
+	Operand();
 };
 
 std::ostream &operator<<(std::ostream &o, class Int8 const &i);

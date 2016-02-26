@@ -4,24 +4,24 @@
 
 #include "../../includes/classes/Int32.hpp"
 
-Int32::Int32() : AOperand("", eOperandType::Int32), _value(0) {}
+Int32::Int32() : Operand("", eOperandType::Int32), _value(0) {}
 
-Int32::Int32(long double val) : AOperand(std::to_string(static_cast<int32_t>(val)), eOperandType::Int32) {
+Int32::Int32(long double val) : Operand(std::to_string(static_cast<int32_t>(val)), eOperandType::Int32) {
 	std::cout << "int32 num construction : " << val << std::endl;
 	//Check if value in range
 	if (INT_MIN <= val && val <= INT_MAX) {
 		_value = static_cast<int32_t>(val);
 	} else {
-		throw AOperand::OutOfRangeException();
+		throw Operand::OutOfRangeException();
 	}
 }
 
-Int32::Int32(std::string val) : AOperand(val, eOperandType::Int32) {
+Int32::Int32(std::string val) : Operand(val, eOperandType::Int32) {
 	//Attempt conversion from string to int32_t
 	_value = std::stoi(val, 0, 0);
 }
 
-Int32::Int32(Int32 const &src) : AOperand(src.toString(), eOperandType::Int32), _value(src.getValue()) {
+Int32::Int32(Int32 const &src) : Operand(src.toString(), eOperandType::Int32), _value(src.getValue()) {
 	*this = src;
 }
 

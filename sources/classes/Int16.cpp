@@ -4,9 +4,9 @@
 
 #include "../../includes/classes/Int16.hpp"
 
-Int16::Int16() : AOperand("", eOperandType::Int16), _value(0) {}
+Int16::Int16() : Operand("", eOperandType::Int16), _value(0) {}
 
-Int16::Int16(long double val) : AOperand(std::to_string(static_cast<int16_t>(val)), eOperandType::Int16) {
+Int16::Int16(long double val) : Operand(std::to_string(static_cast<int16_t>(val)), eOperandType::Int16) {
 	std::cout << "int16 num construction : " << val << std::endl;
 	//Check if value is in int16_t range
 	if (INT16_MIN <= val && val <= INT16_MAX) {
@@ -16,7 +16,7 @@ Int16::Int16(long double val) : AOperand(std::to_string(static_cast<int16_t>(val
 	}
 }
 
-Int16::Int16(std::string val) : AOperand(val, eOperandType::Int16) {
+Int16::Int16(std::string val) : Operand(val, eOperandType::Int16) {
 	//Attempt conversion from string to int16_t
 	int convertedVal = std::stoi(val, 0, 0);
 
@@ -28,7 +28,7 @@ Int16::Int16(std::string val) : AOperand(val, eOperandType::Int16) {
 	}
 }
 
-Int16::Int16(Int16 const &src) : AOperand(src.toString(), eOperandType::Int16), _value(src.getValue()) {
+Int16::Int16(Int16 const &src) : Operand(src.toString(), eOperandType::Int16), _value(src.getValue()) {
 	*this = src;
 }
 

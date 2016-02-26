@@ -3,62 +3,62 @@
 //
 
 #include <array>
-#include "../../includes/AOperand.hpp"
+#include "../../includes/Operand.hpp"
 #include "../../includes/classes/Int8.hpp"
 #include "../../includes/classes/Int16.hpp"
 #include "../../includes/classes/Int32.hpp"
 #include "../../includes/classes/Float.hpp"
 #include "../../includes/classes/Double.hpp"
 
-AOperand::AOperand() : _strValue(""), _type(eOperandType::Int8) {}
+Operand::Operand() : _strValue(""), _type(eOperandType::Int8) {}
 
-AOperand::AOperand(std::string val, eOperandType type) : _strValue(val), _type(type) {}
+Operand::Operand(std::string val, eOperandType type) : _strValue(val), _type(type) {}
 
-AOperand::AOperand(AOperand const &src) : _type(src.getType()) {}
+Operand::Operand(Operand const &src) : _type(src.getType()) {}
 
-AOperand &AOperand::operator=(AOperand const &rhs) {
+Operand &Operand::operator=(Operand const &rhs) {
 	this->_strValue = rhs.getStrValue();
 
 	return *this;
 }
 
-eOperandType AOperand::choosePrecision(IOperand const &rhs) const {
+eOperandType Operand::choosePrecision(IOperand const &rhs) const {
 	return rhs.getPrecision() >= this->getPrecision() ? rhs.getType() : this->getType();
 }
 
-std::string AOperand::getStrValue() const {
+std::string Operand::getStrValue() const {
 	return this->_strValue;
 }
 
-int AOperand::getPrecision(void) const {
+int Operand::getPrecision(void) const {
 	return this->getType();
 }
 
-eOperandType AOperand::getType(void) const {
+eOperandType Operand::getType(void) const {
 	return this->_type;
 }
 
-IOperand const *AOperand::createInt8(long double d) const {
+IOperand const *Operand::createInt8(long double d) const {
 	return new class Int8(d);
 }
 
-IOperand const *AOperand::createInt16(long double d) const {
+IOperand const *Operand::createInt16(long double d) const {
 	return new class Int16(d);
 }
 
-IOperand const *AOperand::createInt32(long double d) const {
+IOperand const *Operand::createInt32(long double d) const {
 	return new class Int32(d);
 }
 
-IOperand const *AOperand::createFloat(long double d) const {
+IOperand const *Operand::createFloat(long double d) const {
 	return new class Float(d);
 }
 
-IOperand const *AOperand::createDouble(long double d) const {
+IOperand const *Operand::createDouble(long double d) const {
 	return new class Double(d);
 }
 
-IOperand const *AOperand::operator+(IOperand const &rhs) const {
+IOperand const *Operand::operator+(IOperand const &rhs) const {
 	std::cout << "+ operator" << std::endl;
 	long double op = this->getDoubleValue() + static_cast<class Double const *>(std::addressof(rhs))->getDoubleValue();
 
@@ -66,7 +66,7 @@ IOperand const *AOperand::operator+(IOperand const &rhs) const {
 //	return CALL_MEMBER_FN(*this, _functions[3])(op);
 }
 
-IOperand const *AOperand::operator-(IOperand const &rhs) const {
+IOperand const *Operand::operator-(IOperand const &rhs) const {
 	std::cout << "- operator" << std::endl;
 	long double op = this->getDoubleValue() - static_cast<class Double const *>(std::addressof(rhs))->getDoubleValue();
 
@@ -74,7 +74,7 @@ IOperand const *AOperand::operator-(IOperand const &rhs) const {
 //	return CALL_MEMBER_FN(*this, _functions[3])(op);
 }
 
-IOperand const *AOperand::operator*(IOperand const &rhs) const {
+IOperand const *Operand::operator*(IOperand const &rhs) const {
 	std::cout << "* operator" << std::endl;
 	long double op = this->getDoubleValue() * static_cast<class Double const *>(std::addressof(rhs))->getDoubleValue();
 
@@ -82,7 +82,7 @@ IOperand const *AOperand::operator*(IOperand const &rhs) const {
 //	return CALL_MEMBER_FN(*this, _functions[3])(op);
 }
 
-IOperand const *AOperand::operator/(IOperand const &rhs) const {
+IOperand const *Operand::operator/(IOperand const &rhs) const {
 	std::cout << "/ operator" << std::endl;
 	long double op = this->getDoubleValue() / static_cast<class Double const *>(std::addressof(rhs))->getDoubleValue();
 
@@ -90,7 +90,7 @@ IOperand const *AOperand::operator/(IOperand const &rhs) const {
 //	return CALL_MEMBER_FN(*this, _functions[3])(op);
 }
 
-IOperand const *AOperand::operator%(IOperand const &rhs) const {
+IOperand const *Operand::operator%(IOperand const &rhs) const {
 	std::cout << "% operator" << std::endl;
 	long double op = this->getInt32Value() % static_cast<class Int32 const *>(std::addressof(rhs))->getInt32Value();
 
@@ -98,11 +98,11 @@ IOperand const *AOperand::operator%(IOperand const &rhs) const {
 //	return CALL_MEMBER_FN(*this, _functions[3])(op);
 }
 
-std::string const &AOperand::toString(void) const {
+std::string const &Operand::toString(void) const {
 	return _strValue;
 }
 
-const char *AOperand::OutOfRangeException::what() const throw() {
+const char *Operand::OutOfRangeException::what() const throw() {
 	return "Submitted value is out of expected range!";
 }
 
@@ -114,7 +114,7 @@ const char *AOperand::OutOfRangeException::what() const throw() {
 //	return std::stoi(this->_strValue);
 //}
 
-int32_t AOperand::getInt32Value() const {
+int32_t Operand::getInt32Value() const {
 	return std::stoi(this->_strValue);
 }
 
@@ -122,7 +122,7 @@ int32_t AOperand::getInt32Value() const {
 //	return std::stof(this->_strValue);
 //}
 
-double AOperand::getDoubleValue() const {
+double Operand::getDoubleValue() const {
 	return std::stod(this->_strValue);
 }
 

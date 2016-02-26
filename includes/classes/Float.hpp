@@ -5,9 +5,9 @@
 #ifndef ABSTRACTVM_FLOAT_HPP
 #define ABSTRACTVM_FLOAT_HPP
 
-#include "../AOperand.hpp"
+#include "../Operand.hpp"
 
-class Float : public AOperand
+class Float : public Operand
 {
 	public:
 	Float(long double val);
