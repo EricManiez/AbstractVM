@@ -17,11 +17,6 @@ class Float : public AOperand
 	virtual ~Float(void) {}
 
 	virtual const float &getValue() const;
-	virtual int8_t getInt8Value() const;
-	virtual int16_t getInt16Value() const;
-	virtual int32_t getInt32Value() const;
-	virtual float getFloatValue() const;
-	virtual double getDoubleValue() const;
 
 	private:
 	Float();

@@ -31,23 +31,3 @@ class Float &Float::operator=(Float const &rhs) {
 const float &Float::getValue() const {
 	return this->_value;
 }
-
-int8_t Float::getInt8Value() const {
-	return static_cast<int8_t>(this->getValue());
-}
-
-int16_t Float::getInt16Value() const {
-	return static_cast<int16_t>(this->getValue());
-}
-
-int32_t Float::getInt32Value() const {
-	return static_cast<int32_t>(this->getValue());
-}
-
-float Float::getFloatValue() const {
-	return static_cast<float>(this->getValue());
-}
-
-double Float::getDoubleValue() const {
-	return static_cast<double>(this->getValue());
-}

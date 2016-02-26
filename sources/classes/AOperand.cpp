@@ -110,3 +110,29 @@ std::string const &AOperand::toString(void) const {
 const char *AOperand::OutOfRangeException::what() const throw() {
 	return "Submitted value is out of expected range!";
 }
+
+int8_t AOperand::getInt8Value() const {
+	return std::stoi(this->_value);
+}
+
+int16_t AOperand::getInt16Value() const {
+	return std::stoi(this->_value);
+}
+
+int32_t AOperand::getInt32Value() const {
+	return std::stoi(this->_value);
+}
+
+float AOperand::getFloatValue() const {
+	return std::stof(this->_value);
+}
+
+double AOperand::getDoubleValue() const {
+	return std::stod(this->_value);
+}
+
+std::ostream &operator<<(std::ostream &o, class Int8 const &i) {
+	o << i.toString();
+
+	return o;
+}

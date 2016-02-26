@@ -17,11 +17,6 @@ class Int8 : public AOperand
 	virtual ~Int8(void) {}
 
 	virtual const int8_t &getValue() const;
-	virtual int8_t getInt8Value() const;
-	virtual int16_t getInt16Value() const;
-	virtual int32_t getInt32Value() const;
-	virtual float getFloatValue() const;
-	virtual double getDoubleValue() const;
 
 	private:
 	Int8();

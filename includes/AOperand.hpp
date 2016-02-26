@@ -59,11 +59,11 @@ class AOperand : public IOperand
 		virtual const char *what() const throw();
 	};
 
-	virtual int8_t getInt8Value() const = 0;
-	virtual int16_t getInt16Value() const = 0;
-	virtual int32_t getInt32Value() const = 0;
-	virtual float getFloatValue() const = 0;
-	virtual double getDoubleValue() const = 0;
+	virtual int8_t getInt8Value() const;
+	virtual int16_t getInt16Value() const;
+	virtual int32_t getInt32Value() const;
+	virtual float getFloatValue() const;
+	virtual double getDoubleValue() const;
 
 	protected:
 	AOperand(std::string, eOperandType, std::string);

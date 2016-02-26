@@ -31,23 +31,3 @@ class Int32 &Int32::operator=(Int32 const &rhs) {
 const int32_t &Int32::getValue() const {
 	return this->_value;
 }
-
-int8_t Int32::getInt8Value() const {
-	return static_cast<int8_t >(this->getValue());
-}
-
-int16_t Int32::getInt16Value() const {
-	return static_cast<int16_t >(this->getValue());
-}
-
-int32_t Int32::getInt32Value() const {
-	return static_cast<int32_t >(this->getValue());
-}
-
-float Int32::getFloatValue() const {
-	return static_cast<float >(this->getValue());
-}
-
-double Int32::getDoubleValue() const {
-	return static_cast<double >(this->getValue());
-}

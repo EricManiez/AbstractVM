@@ -43,23 +43,3 @@ class Int8 &Int8::operator=(Int8 const &rhs) {
 const int8_t &Int8::getValue() const {
 	return this->_value;
 }
-
-int8_t Int8::getInt8Value() const {
-	return static_cast<int8_t >(this->getValue());
-}
-
-int16_t Int8::getInt16Value() const {
-	return static_cast<int16_t >(this->getValue());
-}
-
-int32_t Int8::getInt32Value() const {
-	return static_cast<int32_t >(this->getValue());
-}
-
-float Int8::getFloatValue() const {
-	return static_cast<float >(this->getValue());
-}
-
-double Int8::getDoubleValue() const {
-	return static_cast<double >(this->getValue());
-}
