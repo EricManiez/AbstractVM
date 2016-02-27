@@ -3,6 +3,7 @@
 //
 
 #include <array>
+#include <sstream>
 #include "../../includes/classes/Operand.hpp"
 #include "../../includes/classes/operands/Int8.hpp"
 #include "../../includes/classes/operands/Int16.hpp"
@@ -13,7 +14,19 @@
 
 Operand::Operand() : _strValue(""), _type(eOperandType::Int8) {}
 
-Operand::Operand(std::string val, eOperandType type) : _strValue(val), _type(type) {}
+Operand::Operand(std::string val, eOperandType type) : _type(type) {
+	std::stringstream sstream;
+
+	if (type == eOperandType::Int8 ||type == eOperandType::Int16 ||type == eOperandType::Int32) {
+		sstream << stoi(val, 0, 0);
+	} else if (type == eOperandType::Float) {
+		sstream << stof(val);
+	} else if (type == eOperandType::Double) {
+		sstream << stod(val);
+	}
+
+	_strValue = sstream.str();
+}
 
 Operand::Operand(Operand const &src) : _type(src.getType()) {}
 
@@ -116,4 +129,13 @@ std::ostream &operator<<(std::ostream &o, class Int8 const &i) {
 	o << i.toString();
 
 	return o;
+}
+
+bool Operand::operator==(IOperand const &rhs) const {
+	std::cout << "==" << std::endl;
+	return (getType() == rhs.getType()) && (toString() == rhs.toString());
+}
+bool Operand::operator!=(IOperand const &rhs) const {
+	std::cout << "!=" << std::endl;
+	return (getType() != rhs.getType()) || (toString() != rhs.toString());
 }

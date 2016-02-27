@@ -29,6 +29,8 @@ class Operand : public IOperand
 	virtual IOperand const *operator*(IOperand const &rhs) const;
 	virtual IOperand const *operator/(IOperand const &rhs) const;
 	virtual IOperand const *operator%(IOperand const &rhs) const;
+	virtual bool operator==(IOperand const &rhs) const;
+	virtual bool operator!=(IOperand const &rhs) const;
 
 	class OutOfRangeException : public std::exception
 	{
