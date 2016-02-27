@@ -5,29 +5,25 @@
 #include <iostream>
 #include <float.h>
 #include "../includes/classes/OperandFactory.hpp"
-#include "../includes/classes/OperandStack.hpp"
+#include "../includes/classes/Parser.hpp"
+#include "../includes/classes/OperandStackController.hpp"
+#include "../includes/classes/Lexer.hpp"
 
-int main() {
+int main(int argc, char **argv) {
 
-	OperandFactory factory;
-	OperandStack stack;
-	stack.push(factory.createOperand(eOperandType::Int8, "60"));
-	stack.push(factory.createOperand(eOperandType::Int8, "60"));
-	stack.push(factory.createOperand(eOperandType::Int8, "2"));
-	stack.push(factory.createOperand(eOperandType::Int16, "0x0f"));
-	stack.push(factory.createOperand(eOperandType::Int32, "0xff"));
-	stack.push(factory.createOperand(eOperandType::Float, "42.42"));
-	stack.push(factory.createOperand(eOperandType::Double, "432.432"));
-	stack.assert(factory.createOperand(eOperandType::Double, "432.4320000"));
-	stack.push(factory.createOperand(eOperandType::Float, "432.432000.32"));
-	stack.push(factory.createOperand(eOperandType::Int8, "97"));
-	stack.print();
-	stack.dump();
+	if (argc != 1 && argc != 2) {
+		std::cout << "nope" << std::endl;
+		exit(0);
+	}
 
-//	std::cout << (*one + *one)->toString() << std::endl;
-//	std::cout << six->toString() << std::endl;
-//	std::cout << sev->toString() << std::endl;
-//	std::cout << (*sev == *six) << std::endl;
+	std::string command;
+	Parser	parser(argc == 2 ? argv[1] : "");
+	OperandStackController stack;
+
+	std::cout << "Let's get abstract!" << std::endl;
+	while (!(command = parser.read()).empty()){
+		stack.execute(command);
+	}
 
 	return 1;
 }

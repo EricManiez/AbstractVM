@@ -14,6 +14,9 @@ class OperandFactory
 	typedef IOperand const *(OperandFactory::*ClassCreationNumberFunctionPointer)(long double const &value) const;
 
 	public:
+	OperandFactory() {};
+	~OperandFactory() {};
+
 	IOperand const *createOperand(eOperandType type, std::string const &value) const;
 	IOperand const *createOperand(eOperandType type, long double const &value) const;
 
@@ -44,6 +47,14 @@ class OperandFactory
 			&OperandFactory::createInt32,
 			&OperandFactory::createFloat,
 			&OperandFactory::createDouble
+	};
+
+	std::string _names[5] = {
+			"Int8",
+			"Int16",
+			"Int32",
+			"Float",
+			"Double"
 	};
 };
 

@@ -8,10 +8,26 @@
 
 #include <deque>
 #include "../IOperand.hpp"
+#include "Lexer.hpp"
 
-class OperandStack
+class OperandStackController
 {
+	typedef void (OperandStackController::*UnaryControllerFunctionPointer)();
+	typedef void (OperandStackController::*BinaryControllerFunctionPointer)(IOperand const *);
+
 	public:
+	OperandStackController();
+	OperandStackController(OperandStackController const &);
+	OperandStackController const &operator=(OperandStackController const &rhs);
+
+	~OperandStackController() {};
+
+	const std::deque<const IOperand *> &get_operandStack() const;
+	const std::map<std::string, UnaryControllerFunctionPointer> &get_unaries() const;
+	const std::map<std::string, BinaryControllerFunctionPointer> &get_binaries() const;
+
+	void execute(std::string);
+
 	void push(IOperand const *);
 	void pop();
 	void dump();
@@ -22,6 +38,7 @@ class OperandStack
 	void div();
 	void mod();
 	void print();
+	void mExit();
 
 	class StackTooShortException : public std::exception
 	{
@@ -52,6 +69,8 @@ class OperandStack
 
 	private:
 	std::deque<IOperand const *> _operandStack;
+	std::map<std::string, UnaryControllerFunctionPointer> _unaries;
+	std::map<std::string, BinaryControllerFunctionPointer> _binaries;
 };
 
 

@@ -11,19 +11,12 @@
 
 IOperand const *OperandFactory::createOperand(eOperandType type, std::string const &value) const {
 	IOperand const *ret = 0;
-	std::string names[5] = {
-			"Int8",
-			"Int16",
-			"Int32",
-			"Float",
-			"Double"
-	};
 
 	try {
 		ret = (*this.*_stringFunctions[type])(value);
 		//ret = CALL_MEMBER_FN(*this, _stringFunctions[type])(value);
 	} catch (Operand::OutOfRangeException &e) {
-		std::cout << e.what() << " : submitted value is out of " << names[type] << " range." << std::endl;
+		std::cout << e.what() << " : submitted value is out of " << _names[type] << " range." << std::endl;
 		exit(0);
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
@@ -35,19 +28,12 @@ IOperand const *OperandFactory::createOperand(eOperandType type, std::string con
 
 IOperand const *OperandFactory::createOperand(eOperandType type, long double const &value) const {
 	IOperand const *ret = 0;
-	std::string names[5] = {
-			"Int8",
-			"Int16",
-			"Int32",
-			"Float",
-			"Double"
-	};
 
 	try {
 		ret = (*this.*_numberFunctions[type])(value);
 		//ret = CALL_MEMBER_FN(*this, _numberFunctions[type])(value);
 	} catch (Operand::OutOfRangeException &e) {
-		std::cout << e.what() << " : calculated value is out of " << names[type] << " range." << std::endl;
+		std::cout << e.what() << " : calculated value is out of " << _names[type] << " range." << std::endl;
 		exit(0);
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
@@ -96,4 +82,3 @@ IOperand const *OperandFactory::createFloat(long double const &value) const {
 IOperand const *OperandFactory::createDouble(long double const &value) const {
 	return new class Double(value);
 }
-
