@@ -10,9 +10,9 @@ Int32::Int32(long double val) : Operand(std::to_string(static_cast<int32_t>(val)
 	std::cout << "int32 num construction : " << val << std::endl;
 	//Check if value in range
 	if (val < INT_MIN) {
-		throw std::underflow_error("[UNDERFLOW] : " +_strValue + " is too low for int32 type");
+		throw std::underflow_error("[UNDERFLOW] : " +std::to_string(val) + " is too low for int32 type");
 	} else if (val > INT_MAX) {
-		throw std::overflow_error("[OVERFLOW] : " + _strValue + " is too high for int32 type");
+		throw std::overflow_error("[OVERFLOW] : " + std::to_string(val) + " is too high for int32 type");
 	} else {
 		_value = static_cast<int32_t>(val);
 	}

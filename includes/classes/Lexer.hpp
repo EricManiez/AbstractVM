@@ -22,43 +22,22 @@ class Lexer
 
 	std::map<std::string, std::string> analyzeExpression();
 
-	class InstructionIncorrectException : public std::exception
+	class InstructionIncorrectException : public std::runtime_error
 	{
 		public :
-		InstructionIncorrectException() {};
-
-		InstructionIncorrectException(InstructionIncorrectException const &) {};
-
-		virtual ~InstructionIncorrectException() throw() {};
-		InstructionIncorrectException const &operator=(InstructionIncorrectException const &);
-
-		virtual const char *what() const throw();
+		InstructionIncorrectException();
 	};
 
-	class WrongValueFormatException : public std::exception
+	class WrongParameterFormatException : public std::runtime_error
 	{
 		public :
-		WrongValueFormatException() {};
-
-		WrongValueFormatException(WrongValueFormatException const &) {};
-
-		virtual ~WrongValueFormatException() throw() {};
-		WrongValueFormatException const &operator=(WrongValueFormatException const &);
-
-		virtual const char *what() const throw();
+		WrongParameterFormatException();
 	};
 
-	class UnknownTypeException : public std::exception
+	class UnknownTypeException : public std::runtime_error
 	{
 		public :
-		UnknownTypeException() {};
-
-		UnknownTypeException(UnknownTypeException const &) {};
-
-		virtual ~UnknownTypeException() throw() {};
-		UnknownTypeException const &operator=(UnknownTypeException const &);
-
-		virtual const char *what() const throw();
+		UnknownTypeException();
 	};
 
 

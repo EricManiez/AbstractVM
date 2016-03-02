@@ -40,13 +40,14 @@ const std::string &Parser::get_fileName() const {
 std::string Parser::read() {
     std::string line;
 
-    std::cout << "\033[1;32m" << "[AbstractVM]> " << "\033[0m";
     if (_fileName.empty()) {
+        std::cout << "\033[1;32m" << "[AbstractVM]> " << "\033[0m";
         std::getline(std::cin, line);
     } else if (!_fileStream.eof()) {
         std::getline(_fileStream, line);
     } else {
         //no exit instruction exception
+        throw EofNoExitException();
     }
 
     std::string ret = cleanLine(line);
@@ -67,3 +68,6 @@ std::string Parser::cleanLine(std::string line) {
 
     return line;
 }
+
+Parser::EofNoExitException::EofNoExitException() : std::logic_error(
+        "[EOF] End of file reached - no exit instruction") { }

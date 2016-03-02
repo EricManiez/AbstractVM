@@ -11,9 +11,9 @@ Double::Double(long double val) : Operand(std::to_string(static_cast<double>(val
 	std::cout << "Double num construction : " << val << std::endl;
 	//Check if value in range
 	if (val < DBL_MIN) {
-		throw std::underflow_error("[UNDERFLOW] : " +_strValue + " is too low for double type");
+		throw std::underflow_error("[UNDERFLOW] : " +std::to_string(val) + " is too low for double type");
 	} else if (val > DBL_MAX) {
-		throw std::overflow_error("[OVERFLOW] : " + _strValue + " is too high for double type");
+		throw std::overflow_error("[OVERFLOW] : " + std::to_string(val) + " is too high for double type");
 	} else {
 		_value = static_cast<double>(val);
 	}

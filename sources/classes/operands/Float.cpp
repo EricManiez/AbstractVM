@@ -11,9 +11,9 @@ Float::Float(long double val) : Operand(std::to_string(static_cast<float>(val)),
 	std::cout << "Float num construction : " << val << std::endl;
 	//Check if value in range
 	if (val < FLT_MIN) {
-		throw std::underflow_error("[UNDERFLOW] : " +_strValue + " is too low for float type");
+		throw std::underflow_error("[UNDERFLOW] : " +std::to_string(val) + " is too low for float type");
 	} else if (val > FLT_MAX) {
-		throw std::overflow_error("[OVERFLOW] : " + _strValue + " is too high for float type");
+		throw std::overflow_error("[OVERFLOW] : " + std::to_string(val) + " is too high for float type");
 	} else {
 		_value = static_cast<float>(val);
 	}

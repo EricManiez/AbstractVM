@@ -19,8 +19,13 @@ int main(int argc, char **argv) {
     std::string command;
     Parser parser(argc == 2 ? argv[1] : "");
     OperandStackController stack;
-
-    while (!(command = parser.read()).empty()) {
+    try {
+        command = parser.read();
+    } catch (Parser::EofNoExitException &e) {
+        std::cout << "\033[1;31m[ERROR] " << e.what() << "\033[0m" << std::endl;
+        exit(0);
+    }
+    while (!(command.empty())) {
         try {
             stack.execute(command);
         } catch (std::exception &e) {
@@ -29,7 +34,14 @@ int main(int argc, char **argv) {
                 exit(0);
             }
         }
+        try {
+            command = parser.read();
+        } catch (Parser::EofNoExitException &e) {
+            std::cout << "\033[1;31m[ERROR] " << e.what() << "\033[0m" << std::endl;
+            exit(0);
+        }
     }
+
 
     return 1;
 }

@@ -10,67 +10,65 @@
 #include "../IOperand.hpp"
 #include "Lexer.hpp"
 
-class OperandStackController
-{
-	typedef void (OperandStackController::*UnaryControllerFunctionPointer)();
-	typedef void (OperandStackController::*BinaryControllerFunctionPointer)(IOperand const *);
+class OperandStackController {
+    typedef void (OperandStackController::*UnaryControllerFunctionPointer)();
 
-	public:
-	OperandStackController();
-	OperandStackController(OperandStackController const &);
-	OperandStackController const &operator=(OperandStackController const &rhs);
+    typedef void (OperandStackController::*BinaryControllerFunctionPointer)(IOperand const *);
 
-	~OperandStackController() {};
+public:
+    OperandStackController();
 
-	const std::deque<const IOperand *> &get_operandStack() const;
-	const std::map<std::string, UnaryControllerFunctionPointer> &get_unaries() const;
-	const std::map<std::string, BinaryControllerFunctionPointer> &get_binaries() const;
+    OperandStackController(OperandStackController const &);
 
-	void execute(std::string);
+    OperandStackController const &operator=(OperandStackController const &rhs);
 
-	void push(IOperand const *);
-	void pop();
-	void dump();
-	void assert(IOperand const *);
-	void add();
-	void sub();
-	void mul();
-	void div();
-	void mod();
-	void print();
-	void mExit();
+    ~OperandStackController() { };
 
-	class StackTooShortException : public std::exception
-	{
-		public :
-		StackTooShortException() {};
+    const std::deque<const IOperand *> &get_operandStack() const;
 
-		StackTooShortException(StackTooShortException const &) {};
+    const std::map<std::string, UnaryControllerFunctionPointer> &get_unaries() const;
 
-		virtual ~StackTooShortException() throw() {};
-		StackTooShortException const &operator=(StackTooShortException const &);
+    const std::map<std::string, BinaryControllerFunctionPointer> &get_binaries() const;
 
-		virtual const char *what() const throw();
-	};
+    void execute(std::string);
 
-	class AssertFalseException : public std::exception
-	{
-		public :
-		AssertFalseException() {};
+    void push(IOperand const *);
 
-		AssertFalseException(AssertFalseException const &) {};
+    void pop();
 
-		virtual ~AssertFalseException() throw() {};
-		AssertFalseException const &operator=(AssertFalseException const &);
+    void dump();
 
-		virtual const char *what() const throw();
-	};
+    void assert(IOperand const *);
+
+    void add();
+
+    void sub();
+
+    void mul();
+
+    void div();
+
+    void mod();
+
+    void print();
+
+    void mExit();
+
+    class StackTooShortException : public std::logic_error {
+    public :
+        StackTooShortException();
+    };
+
+    class AssertFalseException : public std::logic_error {
+    public :
+        AssertFalseException();
+    };
 
 
-	private:
-	std::deque<IOperand const *> _operandStack;
-	std::map<std::string, UnaryControllerFunctionPointer> _unaries;
-	std::map<std::string, BinaryControllerFunctionPointer> _binaries;
+private:
+    std::deque<IOperand const *> _operandStack;
+    std::map<std::string, UnaryControllerFunctionPointer> _unaries;
+    std::map<std::string, BinaryControllerFunctionPointer> _binaries;
 };
 
 

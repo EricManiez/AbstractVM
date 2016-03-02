@@ -24,7 +24,14 @@ class Parser
 	std::string read();
 	std::string cleanLine(std::string line);
 
-	private:
+    class EofNoExitException : public std::logic_error
+    {
+        public :
+        EofNoExitException();
+    };
+
+
+    private:
 	std::string _fileName;
 	std::ifstream _fileStream;
 };
