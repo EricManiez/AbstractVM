@@ -131,6 +131,9 @@ void OperandStackController::div() {
     if (_operandStack.size() < 2) {
         throw OperandStackController::StackTooShortException();
     }
+    if (std::stod(_operandStack[0]->toString()) == 0) {
+        throw OperandStackController::DivOrModByZero();
+    }
     IOperand const *ret = *_operandStack[1] / *_operandStack[0];
 
     _operandStack.pop_front();
@@ -141,6 +144,12 @@ void OperandStackController::div() {
 void OperandStackController::mod() {
     if (_operandStack.size() < 2) {
         throw OperandStackController::StackTooShortException();
+    }
+    if (std::stod(_operandStack[0]->toString()) == 0) {
+        throw OperandStackController::DivOrModByZero();
+    }
+    if (_operandStack[0]->getType() == eOperandType::Double || _operandStack[0]->getType() == eOperandType::Float) {
+        throw OperandStackController::ModByFloatingPoint();
     }
     IOperand const *ret = *_operandStack[1] % *_operandStack[0];
 
@@ -166,3 +175,8 @@ OperandStackController::StackTooShortException::StackTooShortException() : std::
 OperandStackController::AssertFalseException::AssertFalseException() : std::logic_error(
         "[ASSERT FALSE] The result of the assert operation is false.") { }
 
+OperandStackController::DivOrModByZero::DivOrModByZero() : std::logic_error(
+        "[/ || % by 0] Cannot divide or modulo by 0.") { }
+
+OperandStackController::ModByFloatingPoint::ModByFloatingPoint() : std::logic_error(
+        "[% by floating point] Cannot modulo by floating point value.") { }

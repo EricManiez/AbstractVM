@@ -64,6 +64,16 @@ public:
         AssertFalseException();
     };
 
+class DivOrModByZero : public std::logic_error {
+    public :
+    DivOrModByZero();
+    };
+
+class ModByFloatingPoint : public std::logic_error {
+    public :
+    ModByFloatingPoint();
+    };
+
 
 private:
     std::deque<IOperand const *> _operandStack;
