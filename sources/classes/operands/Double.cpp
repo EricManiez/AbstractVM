@@ -10,10 +10,12 @@ Double::Double() : Operand("", eOperandType::Double), _value(0) {}
 Double::Double(long double val) : Operand(std::to_string(static_cast<double>(val)), eOperandType::Double) {
 	std::cout << "Double num construction : " << val << std::endl;
 	//Check if value in range
-	if (DBL_MIN <= val && val <= DBL_MAX) {
-		_value = static_cast<double>(val);
+	if (val < DBL_MIN) {
+		throw std::underflow_error("[UNDERFLOW] : " +_strValue + " is too low for double type");
+	} else if (val > DBL_MAX) {
+		throw std::overflow_error("[OVERFLOW] : " + _strValue + " is too high for double type");
 	} else {
-		throw Operand::OutOfRangeException();
+		_value = static_cast<double>(val);
 	}
 }
 

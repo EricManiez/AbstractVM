@@ -101,10 +101,6 @@ std::string const &Operand::toString(void) const {
 	return _strValue;
 }
 
-const char *Operand::OutOfRangeException::what() const throw() {
-	return "Range exception";
-}
-
 //int8_t AOperand::getInt8Value() const {
 //	return std::stoi(this->_strValue);
 //}

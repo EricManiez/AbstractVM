@@ -32,19 +32,6 @@ class Operand : public IOperand
 	virtual bool operator==(IOperand const &rhs) const;
 	virtual bool operator!=(IOperand const &rhs) const;
 
-	class OutOfRangeException : public std::exception
-	{
-		public :
-		OutOfRangeException() {};
-
-		OutOfRangeException(OutOfRangeException const &) {};
-
-		virtual ~OutOfRangeException() throw() {};
-		OutOfRangeException const &operator=(OutOfRangeException const &);
-
-		virtual const char *what() const throw();
-	};
-
 	protected:
 	Operand(std::string, eOperandType);
 	eOperandType choosePrecision(IOperand const &rhs) const;

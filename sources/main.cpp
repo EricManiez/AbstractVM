@@ -11,19 +11,25 @@
 
 int main(int argc, char **argv) {
 
-	if (argc != 1 && argc != 2) {
-		std::cout << "nope" << std::endl;
-		exit(0);
-	}
+    if (argc != 1 && argc != 2) {
+        std::cout << "nope" << std::endl;
+        exit(0);
+    }
 
-	std::string command;
-	Parser	parser(argc == 2 ? argv[1] : "");
-	OperandStackController stack;
+    std::string command;
+    Parser parser(argc == 2 ? argv[1] : "");
+    OperandStackController stack;
 
-	std::cout << "Let's get abstract!" << std::endl;
-	while (!(command = parser.read()).empty()){
-		stack.execute(command);
-	}
+    while (!(command = parser.read()).empty()) {
+        try {
+            stack.execute(command);
+        } catch (std::exception &e) {
+            std::cout << "\033[1;31m[ERROR] " << e.what() << "\033[0m" << std::endl;
+            if (STOP_EXEC_ON_ERROR) {
+                exit(0);
+            }
+        }
+    }
 
-	return 1;
+    return 1;
 }

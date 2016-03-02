@@ -9,10 +9,12 @@ Int16::Int16() : Operand("", eOperandType::Int16), _value(0) {}
 Int16::Int16(long double val) : Operand(std::to_string(static_cast<int16_t>(val)), eOperandType::Int16) {
 	std::cout << "int16 num construction : " << val << std::endl;
 	//Check if value is in int16_t range
-	if (INT16_MIN <= val && val <= INT16_MAX) {
-		_value = static_cast<int16_t>(val);
+	if (val < INT16_MIN) {
+		throw std::underflow_error("[UNDERFLOW] : " +_strValue + " is too low for int16 type");
+	} else if (val > INT16_MAX) {
+		throw std::overflow_error("[OVERFLOW] : " + _strValue + " is too high for int16 type");
 	} else {
-		throw OutOfRangeException();
+		_value = static_cast<int16_t>(val);
 	}
 }
 
@@ -22,10 +24,12 @@ Int16::Int16(std::string val) : Operand(val, eOperandType::Int16) {
 	std::cout << "int16 string construction : " << convertedVal << std::endl;
 
 	//Check if value is in int8_t range
-	if (INT16_MIN <= convertedVal && convertedVal <= INT16_MAX) {
-		_value = static_cast<int16_t>(convertedVal);
+	if (convertedVal < INT16_MIN) {
+		throw std::underflow_error("[UNDERFLOW] : " +_strValue + " is too low for int16 type");
+	} else if (convertedVal > INT16_MAX) {
+		throw std::overflow_error("[OVERFLOW] : " + _strValue + " is too high for int16 type");
 	} else {
-		throw OutOfRangeException();
+		_value = static_cast<int16_t>(convertedVal);
 	}
 }
 

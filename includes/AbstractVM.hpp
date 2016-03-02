@@ -4,6 +4,7 @@
 
 #ifndef ABSTRACTVM_ABSTRACTVM_HPP
 #define ABSTRACTVM_ABSTRACTVM_HPP
+#define STOP_EXEC_ON_ERROR false
 
 #define CALL_MEMBER_FN(object, ptrToMember)  ((object).*(ptrToMember))
 

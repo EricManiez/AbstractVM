@@ -10,10 +10,12 @@ Float::Float() : Operand("", eOperandType::Float), _value(0) {}
 Float::Float(long double val) : Operand(std::to_string(static_cast<float>(val)), eOperandType::Float) {
 	std::cout << "Float num construction : " << val << std::endl;
 	//Check if value in range
-	if (FLT_MIN <= val && val <= FLT_MAX) {
-		_value = static_cast<float>(val);
+	if (val < FLT_MIN) {
+		throw std::underflow_error("[UNDERFLOW] : " +_strValue + " is too low for float type");
+	} else if (val > FLT_MAX) {
+		throw std::overflow_error("[OVERFLOW] : " + _strValue + " is too high for float type");
 	} else {
-		throw Operand::OutOfRangeException();
+		_value = static_cast<float>(val);
 	}
 }
 

@@ -61,7 +61,7 @@ bool Lexer::isInstructionOk() {
 }
 
 bool Lexer::isOperandOk() {
-	std::regex generalPattern("\\b\\w*\\(.*)");
+	std::regex generalPattern("\\b\\w*\\(.+\\)");
 
 	if (!regex_match(_splitCommand[1], generalPattern)) {
 		throw Lexer::WrongValueFormatException();
