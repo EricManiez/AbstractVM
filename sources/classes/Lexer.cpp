@@ -6,6 +6,7 @@
 #include <array>
 #include <iostream>
 #include "../../includes/classes/Lexer.hpp"
+#include "../../includes/AbstractVM.hpp"
 
 Lexer::Lexer(std::string string) : _splitCommand(explode(string, ' ')) {
     if (std::find(string.begin(), string.end(), ';') != string.end()) {
@@ -93,8 +94,10 @@ std::map<std::string, std::string> Lexer::analyzeExpression() {
         isOperandOk();
     }
 
-    for (std::string str : _splitCommand) {
-        std::cout << "Lexer::Analyze : " << str << std::endl;
+    if (DEBUG) {
+        for (std::string str : _splitCommand) {
+            std::cout << "Lexer::Analyze : " << str << std::endl;
+        }
     }
 
     ret["instruction"] = _splitCommand[0];

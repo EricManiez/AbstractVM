@@ -7,10 +7,12 @@
 Int8::Int8() : Operand("", eOperandType::Int8), _value(0) { }
 
 Int8::Int8(long double val) : Operand(std::to_string(static_cast<int8_t>(val)), eOperandType::Int8) {
-    std::cout << "int8 num construction : " << val << std::endl;
+    if (DEBUG) {
+        std::cout << "int8 num construction : " << val << std::endl;
+    }
     //Check if value is in int16_t range
     if (val < INT8_MIN) {
-        throw std::underflow_error("[UNDERFLOW] : " +std::to_string(val) + " is too low for int8 type");
+        throw std::underflow_error("[UNDERFLOW] : " + std::to_string(val) + " is too low for int8 type");
     } else if (val > INT8_MAX) {
         throw std::overflow_error("[OVERFLOW] : " + std::to_string(val) + " is too high for int8 type");
     } else {
@@ -21,7 +23,9 @@ Int8::Int8(long double val) : Operand(std::to_string(static_cast<int8_t>(val)), 
 Int8::Int8(std::string val) : Operand(val, eOperandType::Int8) {
     //Attempt conversion from string to int8_t
     int convertedVal = std::stoi(val, 0, 0);
-    std::cout << "int8 string construction : " << convertedVal << std::endl;
+    if (DEBUG) {
+        std::cout << "int8 string construction : " << convertedVal << std::endl;
+    }
 
     //Check if value is in int8_t range
     if (convertedVal < INT8_MIN) {

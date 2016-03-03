@@ -60,9 +60,11 @@ void OperandStackController::execute(std::string string) {
         types["float"] = eOperandType::Float;
         types["double"] = eOperandType::Double;
 
-        std::cout << "OPS::EXECUTE : " << expression["instruction"] << std::endl;
-        std::cout << "OPS::EXECUTE : " << expression["type"] << std::endl;
-        std::cout << "OPS::EXECUTE : " << expression["operand"] << std::endl;
+        if (DEBUG) {
+            std::cout << "OPS::EXECUTE : " << expression["instruction"] << std::endl;
+            std::cout << "OPS::EXECUTE : " << expression["type"] << std::endl;
+            std::cout << "OPS::EXECUTE : " << expression["operand"] << std::endl;
+        }
 
         OperandFactory factory;
         IOperand const *val = factory.createOperand(types[expression["type"]], expression["operand"]);
