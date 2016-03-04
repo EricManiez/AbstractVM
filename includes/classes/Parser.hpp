@@ -17,7 +17,6 @@ class Parser
 	Parser(std::string fileName);
 	Parser(Parser const &src);
 	Parser const &operator=(Parser const &rhs);
-
 	~Parser() {};
 
 	const std::string &get_fileName() const;

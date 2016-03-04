@@ -14,8 +14,6 @@ class Operand : public IOperand
 	typedef IOperand const *(Operand::*ClassCreationFunctionPointer)(long double num) const;
 
 	public:
-	Operand(Operand const &src);
-	Operand &operator=(Operand const &rhs);
 
 	virtual ~Operand(void) {};
 
@@ -34,12 +32,15 @@ class Operand : public IOperand
 
 	protected:
 	Operand(std::string, eOperandType);
+	Operand(Operand const &src);
+	Operand &operator=(Operand const &rhs);
+
 	eOperandType choosePrecision(IOperand const &rhs) const;
 
-//	virtual int8_t getInt8Value() const;
-//	virtual int16_t getInt16Value() const;
+	//virtual int8_t getInt8Value() const;
+	//virtual int16_t getInt16Value() const;
 	virtual int32_t getInt32Value() const;
-//	virtual float getFloatValue() const;
+	//virtual float getFloatValue() const;
 	virtual double getDoubleValue() const;
 
 	std::string _strValue;

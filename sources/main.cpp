@@ -11,33 +11,37 @@
 
 int main(int argc, char **argv) {
 
-    if (argc != 1 && argc != 2) {
-        std::cout << "nope" << std::endl;
-        exit(0);
-    }
+	if (argc != 1 && argc != 2) {
+		std::cout << "nope" << std::endl;
+		exit(0);
+	}
 
-    std::string command;
-    Parser parser(argc == 2 ? argv[1] : "");
-    OperandStackController stack;
-    int line = 0;
-    try {
-        command = parser.read();
-        line++;
-    } catch (Parser::EofNoExitException &e) {
-        std::cout << "\033[1;31m" << (argc == 2 ? ("Line " + std::to_string(line)) + " - " : "") << "[ERROR] " << e.what() << "\033[0m" << std::endl;
-        exit(0);
-    }
-    while (!(command.empty())) {
-        try {
-            stack.execute(command);
-            command = parser.read();
-            line++;
-        } catch (Parser::EofNoExitException &e) {
-            std::cout << "\033[1;31m" << (argc == 2 ? ("Line " + std::to_string(line)) + " - " : "") << "[ERROR] " << e.what() << "\033[0m" << std::endl;
-            exit(0);
-        }
-    }
+	std::string command;
+	Parser parser(argc == 2 ? argv[1] : "");
+	OperandStackController stack;
+
+	int line = 0;
+	try {
+		command = parser.read();
+		line++;
+	} catch (Parser::EofNoExitException &e) {
+		std::cout << "\033[1;31m" << (argc == 2 ? ("Line " + std::to_string(line)) + " - " : "") << "[ERROR] " << e.what() <<
+		"\033[0m" << std::endl;
+		exit(0);
+	}
+
+	while (!(command.empty())) {
+		try {
+			stack.execute(command);
+			command = parser.read();
+			line++;
+		} catch (Parser::EofNoExitException &e) {
+			std::cout << "\033[1;31m" << (argc == 2 ? ("Line " + std::to_string(line)) + " - " : "") << "[ERROR] " << e.what() <<
+			"\033[0m" << std::endl;
+			exit(0);
+		}
+	}
 
 
-    return 1;
+	return 1;
 }

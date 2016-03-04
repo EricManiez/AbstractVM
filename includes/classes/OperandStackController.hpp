@@ -10,75 +10,63 @@
 #include "../IOperand.hpp"
 #include "Lexer.hpp"
 
-class OperandStackController {
-    typedef void (OperandStackController::*UnaryControllerFunctionPointer)();
+class OperandStackController
+{
+	typedef void (OperandStackController::*UnaryControllerFunctionPointer)();
 
-    typedef void (OperandStackController::*BinaryControllerFunctionPointer)(IOperand const *);
+	typedef void (OperandStackController::*BinaryControllerFunctionPointer)(IOperand const *);
 
-public:
-    OperandStackController();
+	public:
+	OperandStackController();
+	OperandStackController(OperandStackController const &);
+	OperandStackController const &operator=(OperandStackController const &rhs);
+	~OperandStackController() {};
 
-    OperandStackController(OperandStackController const &);
+	const std::deque<const IOperand *> &get_operandStack() const;
+	const std::map<std::string, UnaryControllerFunctionPointer> &get_unaries() const;
+	const std::map<std::string, BinaryControllerFunctionPointer> &get_binaries() const;
+	void execute(std::string);
+	void push(IOperand const *);
+	void pop();
+	void dump();
+	void assert(IOperand const *);
+	void add();
+	void sub();
+	void mul();
+	void div();
+	void mod();
+	void print();
+	void mExit();
 
-    OperandStackController const &operator=(OperandStackController const &rhs);
+	class StackTooShortException : public std::logic_error
+	{
+		public :
+		StackTooShortException();
+	};
 
-    ~OperandStackController() { };
+	class AssertFalseException : public std::logic_error
+	{
+		public :
+		AssertFalseException();
+	};
 
-    const std::deque<const IOperand *> &get_operandStack() const;
+	class DivOrModByZero : public std::logic_error
+	{
+		public :
+		DivOrModByZero();
+	};
 
-    const std::map<std::string, UnaryControllerFunctionPointer> &get_unaries() const;
-
-    const std::map<std::string, BinaryControllerFunctionPointer> &get_binaries() const;
-
-    void execute(std::string);
-
-    void push(IOperand const *);
-
-    void pop();
-
-    void dump();
-
-    void assert(IOperand const *);
-
-    void add();
-
-    void sub();
-
-    void mul();
-
-    void div();
-
-    void mod();
-
-    void print();
-
-    void mExit();
-
-    class StackTooShortException : public std::logic_error {
-    public :
-        StackTooShortException();
-    };
-
-    class AssertFalseException : public std::logic_error {
-    public :
-        AssertFalseException();
-    };
-
-class DivOrModByZero : public std::logic_error {
-    public :
-    DivOrModByZero();
-    };
-
-class ModByFloatingPoint : public std::logic_error {
-    public :
-    ModByFloatingPoint();
-    };
+	class ModByFloatingPoint : public std::logic_error
+	{
+		public :
+		ModByFloatingPoint();
+	};
 
 
-private:
-    std::deque<IOperand const *> _operandStack;
-    std::map<std::string, UnaryControllerFunctionPointer> _unaries;
-    std::map<std::string, BinaryControllerFunctionPointer> _binaries;
+	private:
+	std::deque<IOperand const *> _operandStack;
+	std::map<std::string, UnaryControllerFunctionPointer> _unaries;
+	std::map<std::string, BinaryControllerFunctionPointer> _binaries;
 };
 
 

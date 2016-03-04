@@ -19,7 +19,6 @@ class Lexer
 	~Lexer() {};
 
 	const std::vector<std::string> &get_splitCommand() const;
-
 	std::map<std::string, std::string> analyzeExpression();
 
 	class InstructionIncorrectException : public std::runtime_error
