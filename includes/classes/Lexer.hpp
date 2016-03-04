@@ -15,7 +15,6 @@ class Lexer
 	Lexer(std::string);
 	Lexer(Lexer const &src);
 	Lexer const &operator=(Lexer const &rhs);
-
 	~Lexer() {};
 
 	const std::vector<std::string> &get_splitCommand() const;

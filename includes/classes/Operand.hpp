@@ -14,7 +14,6 @@ class Operand : public IOperand
 	typedef IOperand const *(Operand::*ClassCreationFunctionPointer)(long double num) const;
 
 	public:
-
 	virtual ~Operand(void) {};
 
 	virtual std::string getStrValue() const;

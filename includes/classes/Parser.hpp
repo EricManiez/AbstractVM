@@ -33,19 +33,19 @@ class Parser
 	class FilesIsADirectoryException : public std::runtime_error
 	{
 		public :
-		FilesIsADirectoryException();
+		FilesIsADirectoryException(std::string fileName);
 	};
 
 	class FilePermissionDeniedException : public std::runtime_error
 	{
 		public :
-		FilePermissionDeniedException();
+		FilePermissionDeniedException(std::string fileName);
 	};
 
 	class FilesInexistantException : public std::runtime_error
 	{
 		public :
-		FilesInexistantException();
+		FilesInexistantException(std::string fileName);
 	};
 
 

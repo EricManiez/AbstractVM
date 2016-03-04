@@ -13,19 +13,21 @@ Parser::Parser(std::string fileName) : _fileName(fileName) {
 	struct stat st;
 	int i;
 
-	try {
-		_fileStream.open(fileName);
-		i = stat(fileName.c_str(), &st);
-		if (S_ISDIR(st.st_mode)) {
-			throw FilesIsADirectoryException();
-		} else if (access(fileName.c_str(), R_OK) < 0 && i >= 0) {
-			throw FilePermissionDeniedException();
-		} else if (_fileStream.fail()) {
-			throw FilesInexistantException();
+	if (!fileName.empty()) {
+		try {
+			_fileStream.open(fileName);
+			i = stat(fileName.c_str(), &st);
+			if (S_ISDIR(st.st_mode)) {
+				throw FilesIsADirectoryException(fileName);
+			} else if (access(fileName.c_str(), R_OK) < 0 && i >= 0) {
+				throw FilePermissionDeniedException(fileName);
+			} else if (_fileStream.fail()) {
+				throw FilesInexistantException(fileName);
+			}
+		} catch (std::exception &e) {
+			std::cout << "\033[1;31m" << "[ERROR] " << e.what() << "\033[0m" << std::endl;
+			exit(0);
 		}
-	} catch (std::exception &e) {
-		std::cout << "\033[1;31m" << "[ERROR] " << e.what() << "\033[0m" << std::endl;
-		exit(0);
 	}
 }
 
@@ -77,11 +79,11 @@ std::string Parser::cleanLine(std::string line) {
 Parser::EofNoExitException::EofNoExitException() : std::logic_error(
 		"[EOF] End of file reached - no exit instruction") {}
 
-Parser::FilesIsADirectoryException::FilesIsADirectoryException() : std::runtime_error(
-		"[ISDIR] Selected file is a directory") {}
+Parser::FilesIsADirectoryException::FilesIsADirectoryException(std::string fileName) : std::runtime_error(
+		"[" + fileName + "] This file is a directory") {}
 
-Parser::FilePermissionDeniedException::FilePermissionDeniedException() : std::runtime_error(
-		"[DENIED] You do not have necessary permission to access this file") {}
+Parser::FilePermissionDeniedException::FilePermissionDeniedException(std::string fileName) : std::runtime_error(
+		"[" + fileName + "] You do not have necessary permission to access this file") {}
 
-Parser::FilesInexistantException::FilesInexistantException() : std::runtime_error(
-		"[?] No such file or directory") {}
+Parser::FilesInexistantException::FilesInexistantException(std::string fileName) : std::runtime_error(
+		"[" + fileName + "] No such file or directory") {}
