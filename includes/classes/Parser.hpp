@@ -15,23 +15,42 @@ class Parser
 	public:
 	Parser();
 	Parser(std::string fileName);
-	Parser(Parser const & src);
-	Parser const & operator=(Parser const & rhs);
-	~Parser(){};
+	Parser(Parser const &src);
+	Parser const &operator=(Parser const &rhs);
 
-	const std::string &get_fileName() const ;
+	~Parser() {};
+
+	const std::string &get_fileName() const;
 
 	std::string read();
 	std::string cleanLine(std::string line);
 
-    class EofNoExitException : public std::logic_error
-    {
-        public :
-        EofNoExitException();
-    };
+	class EofNoExitException : public std::logic_error
+	{
+		public :
+		EofNoExitException();
+	};
+
+	class FilesIsADirectoryException : public std::runtime_error
+	{
+		public :
+		FilesIsADirectoryException();
+	};
+
+	class FilePermissionDeniedException : public std::runtime_error
+	{
+		public :
+		FilePermissionDeniedException();
+	};
+
+	class FilesInexistantException : public std::runtime_error
+	{
+		public :
+		FilesInexistantException();
+	};
 
 
-    private:
+	private:
 	std::string _fileName;
 	std::ifstream _fileStream;
 };

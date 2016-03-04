@@ -30,13 +30,6 @@ int main(int argc, char **argv) {
     while (!(command.empty())) {
         try {
             stack.execute(command);
-        } catch (std::exception &e) {
-            std::cout << "\033[1;31m" << (argc == 2 ? ("Line " + std::to_string(line)) + " - " : "") << "[ERROR] " << e.what() << "\033[0m" << std::endl;
-            if (STOP_EXEC_ON_ERROR) {
-                exit(0);
-            }
-        }
-        try {
             command = parser.read();
             line++;
         } catch (Parser::EofNoExitException &e) {
